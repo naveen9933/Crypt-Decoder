@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700" />
+    <title>Crypt-Decoder</title>
+    <link rel="icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#111418] text-white font-sans">
+    <div class="flex flex-col min-h-screen">
+        <header class="flex items-center justify-between border-b border-[#293038] p-4">
+            <div class="flex items-center gap-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8">
+                    <path
+                        d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"
+                        fill="currentColor"></path>
+                </svg>
+                <h2 class="text-lg font-bold">Crypt-Decoder</h2>
+            </div>
+            <nav class="flex gap-4">
+                <a href="#" class="text-sm font-medium">About</a>
+                <a href="#" class="text-sm font-medium">Decoding Methods</a>
+                <a href="#" class="text-sm font-medium">Encryption Methods</a>
+                <a href="#" class="text-sm font-medium">FAQ</a>
+                <a href="#" class="text-sm font-medium">Contact Us</a>
+            </nav>
+        </header>
+
+        <main class="flex flex-col items-center py-5">
+            <h1 class="text-2xl font-bold">Decode your encrypted text</h1>
+            <div class="flex flex-col items-center w-full max-w-md p-4">
+                <label class="flex flex-col w-full">
+                    <span class="text-base font-medium pb-2">Encrypted Text</span>
+                    <textarea id="inputText" placeholder="Paste your text here"
+                        class="resize-none rounded-xl border border-[#3c4753] bg-[#1c2126] text-white placeholder:text-[#9dabb8] p-4 h-36"></textarea>
+                </label>
+                <div class="flex justify-between w-full mt-4">
+                    <button onclick="resetInput()"
+                        class="bg-[#293038] text-sm font-bold rounded-xl h-10 px-4">Reset</button>
+                    <button onclick="startDecryption()"
+                        class="bg-[#1980e6] text-sm font-bold rounded-xl h-10 px-4">Start Decryption</button>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold mt-4">Result</h3>
+            <div id="resultBox" class="bg-[#1c2126] rounded-xl p-4 w-full max-w-md">
+                <p id="resultText" class="text-base font-normal">The decrypted text will appear here, along with the
+                    method used for decryption.</p>
+                <div id="loadingSymbol" class="loading text-center text-xl">🔄 Loading...</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function startDecryption() {
+            const inputText = document.getElementById('inputText').value;
+            const loadingSymbol = document.getElementById('loadingSymbol');
+            const resultText = document.getElementById('resultText');
+
+            // Show loading symbol
+            loadingSymbol.style.display = 'block';
+            resultText.innerHTML = ''; // Clear previous result
+
+            // Simulate loading for 1 second
+            setTimeout(() => {
+                loadingSymbol.style.display = 'none'; // Hide loading symbol
+                resultText.innerHTML = `Your decrypted text for given input "${inputText}" is: ------<br>The method used for encryption is: [Method Name]`;
+            }, 1000); // Change to 1000 milliseconds for 1 second
+        }
+
+        function resetInput() {
+            document.getElementById('inputText').value = ''; // Clear input
+            document.getElementById('resultText').innerHTML = 'The decrypted text will appear here, along with the method used for decryption.'; // Reset result text
+            document.getElementById('loadingSymbol').style.display = 'none'; // Hide loading symbol
+        }
+    </script>
+</body>
+
+</html>
